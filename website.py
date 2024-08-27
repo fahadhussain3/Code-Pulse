@@ -182,14 +182,12 @@ def edit(sno):
             pst = Posts.query.filter_by(sno=sno).first()
             return render_template('edit.html', passing_params=parameter,pasing_post=pst,serialno=sno)
     
-
 @app.route('/logout')
 def logout():
     if "user" in session and session['user']==parameter['signin_email'] and session['password']==parameter['sigin_password']:
         session.pop('user')
         session.pop('password')
         return redirect('/signin')
-
 
 @app.route("/delete/<string:sno>", methods=['GET'])
 
