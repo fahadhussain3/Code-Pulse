@@ -1,12 +1,14 @@
 import pymysql
 pymysql.install_as_MySQLdb()
 
+import os
 import json
 import math
-from flask import Flask, render_template, request,session,redirect
+from flask import Flask, render_template, request,session,redirect,flash
 from flask_mail import Mail, Message  # Import Message class
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 
 # Getting the data of JSON file
 with open('config.json', 'r') as f:
@@ -16,6 +18,9 @@ app = Flask(__name__)
 
 # we have to create the secret key for session
 app.secret_key = 'super-secret-key'
+
+
+app.config['UPLOAD_FOLDER'] = parameter['upload_location']
 
 app.config.update(
     MAIL_SERVER='smtp.office365.com',  # Use 'smtp.office365.com' for Office 365
@@ -50,7 +55,7 @@ class Posts(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     post_title = db.Column(db.String(100), nullable=False)
     post_desc = db.Column(db.String(1000), nullable=False)
-    content=db.Column(db.String(100),nullable=False)
+    content=db.Column(db.String(5000),nullable=False)
     post_slug = db.Column(db.String(30), nullable=False)
     date = db.Column(db.DateTime, nullable=True)
 
@@ -121,6 +126,8 @@ def contact():
         except Exception as e:
             print(f"Error sending email: {e}")
 
+        flash("Thanks! for contacting. We will get back to you as soon as possible","success")
+
     return render_template('contact.html', passing_params=parameter)
 
 
@@ -162,7 +169,6 @@ def edit(sno):
                 enterd_desc = request.form.get('desc')
                 enterd_content = request.form.get('content')
                 enterd_slug = request.form.get('slug')
-                enterd_imgurl = request.form.get('imgurl')
                 if(sno=='0'):
                     add_post=Posts(post_title=enterd_title, post_desc=enterd_desc, content=enterd_content, post_slug=enterd_slug, date=datetime.now())
                     db.session.add(add_post)
@@ -181,7 +187,15 @@ def edit(sno):
 
             pst = Posts.query.filter_by(sno=sno).first()
             return render_template('edit.html', passing_params=parameter,pasing_post=pst,serialno=sno)
-    
+
+@app.route("/uploader" , methods=['GET', 'POST'])
+def uploader():
+    if "user" in session and session['user']==parameter['signin_email'] and session['password']==parameter['sigin_password']:
+        if request.method=='POST':
+            f = request.files['file1']
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+            return redirect('/signin')
+
 @app.route('/logout')
 def logout():
     if "user" in session and session['user']==parameter['signin_email'] and session['password']==parameter['sigin_password']:

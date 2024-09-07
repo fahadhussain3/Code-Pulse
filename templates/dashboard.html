@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Dashboard</title>
+{% endblock %}
+
+
+{% block content %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('static/img/4.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Dashboard</h1>
+                    <span class="subheading">Manage Your Posts</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h1>Basic Actions</h1>
+            <div class="d-flex justify-content mb-4"><a class="btn btn-primary text-uppercase" href="/logout">Logout</a></div>
+            <hr>
+            <h1>Upload File</h1>
+            <form action="/uploader" method="post" enctype="multipart/form-data">
+                <input type="file" name="file1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <hr>
+            <h1>Edit Posts</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <hr>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in passingposts %}
+                    <tr>
+                        <th scope="row">{{item.sno}}</th>
+                        <td>{{item.post_title}}</td>
+                        <td>{{item.date}}</td>
+                        <td><div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="/edit/{{item.sno}}">Edit</a></div></td>
+                        <td><div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="/delete/{{item.sno}}">Delete</a></div></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- Pager-->
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="/edit/0">Add a Post</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

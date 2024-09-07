@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Manage Posts</title>
+{% endblock %}
+
+
+{% block content %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit.jpg') }}');">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Add/Edit Post</h1>
+                            <span class="subheading">Manage Your Post</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Use the form below to add a new post or edit an existing one. Make sure all fields are filled out correctly before submitting.</p>
+                        <div class="my-5">
+                            <form id="editForm" data-sb-form-api-token="API_TOKEN" method="post" action="/edit/{{serialno}}">
+                                <div class="form-floating">
+                                    <input class="form-control" id="title" name="title" type="text" placeholder="Enter Post Title" data-sb-validations="required" value="{{ pasing_post['post_title'] }}" />
+                                    <label for="name">Post Title</label>
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">Post tiltle is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="desc" name="desc" placeholder="Enter your Post Description here..." style="height: 12rem" data-sb-validations="required">{{ pasing_post['post_desc'] }}</textarea>
+                                    <label for="desc">Post Description</label>
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">Description tiltle is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="content" name="content" placeholder="Enter your Post Content here..." style="height: 12rem" data-sb-validations="required">{{ pasing_post['content'] }}</textarea>
+                                    <label for="content">Post Content</label>
+                                    <div class="invalid-feedback" data-sb-feedback="message:required">Post Content is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="slug" name="slug" type="text" placeholder="Enter Post Slug" data-sb-validations="required" value="{{ pasing_post['post_slug'] }}"/>
+                                    <label for="slug">Post Slug</label>
+                                    <div class="invalid-feedback" data-sb-feedback="name:required">Post Slug is required.</div>
+                                </div>
+                                <br />
+                                <!-- Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        To activate this form, sign up at
+                                        <br />
+                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                                <!-- Submit error message-->
+                                <!---->
+                                <!-- This is what your users will see when there is-->
+                                <!-- an error submitting the form-->
+                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                <!-- Submit Button-->
+                                <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}

@@ -1,0 +1,24 @@
+{
+    "params": {
+        "localhost": "True",
+        "local_url": "mysql+pymysql://root:@localhost/codepulse",
+        "production_url": "mysql+pymysql://root:@localhost/codepulse",
+        "blog_Name": "Code Pulse",
+        "head_line": "Feel the Code, Live the Pulse.",
+        "facebook": "https://www.facebook.com/profile.php?id=100080496570886",
+        "github": "https://github.com/fahadhussain3",
+        "twitter": "https://twitter.com/fahadh3133",
+        "your_linkdin":"https://www.linkedin.com/in/fahad-hussain3/",
+        "outlook_username": "youroutlook@outlook.com",
+        "outlook_password": "your_password",
+        "no_of_post_on_homepage":"5",
+        "yourname":"Fahad",
+        "your_about_info": "Hello! I'm Fahad Hussain, an enthusiastic and dedicated student currently pursuing a Bachelor's degree in Information Technology at Punjab University College of Information Technology (PUCIT). With a passion for technology and coding, I have honed my skills in various programming languages, including PHP, C, Python, HTML, CSS, and C#.<br>My journey in the world of programming began with a curiosity to understand how the digital world around us works. Over the years, I have developed a strong foundation in both front-end and back-end development. I'm particularly passionate about backend development, where I enjoy working on the logic and server-side functionalities that power applications.<br>Throughout my academic career, I've worked on several projects that have helped me grow as a developer:<br><strong>KeepNotes:</strong> A PHP application for managing user notes, featuring a secure login system and note management capabilities.<br><strong>iForum:</strong> A dynamic discussion forum website with user authentication, carousel images, and category management, powered by MySQL.<br><strong>CodePulse:</strong> A blog website dedicated to coding and programming, where I share my knowledge and experiences.<br>As I continue to grow in the field of technology, my immediate goal is to master backend development, with a specific focus on frameworks like Flask. I am also eager to explore new technologies and contribute to open-source projects.<br>When I'm not coding, you can find me exploring the latest tech trends, learning new programming languages, or contributing to online communities. I believe in continuous learning and enjoy challenges that push me to think creatively and solve problems effectively.",
+        "login_image":"Logo.png",
+        "signin_email":"fahad.hussain3133@gmail.com",
+        "sigin_password":"1234",
+        "upload_location":"D:\\Languages\\Blog-Website\\static\\img"
+        
+
+    }
+}
